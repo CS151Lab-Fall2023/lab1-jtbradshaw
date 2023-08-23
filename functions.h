@@ -25,9 +25,9 @@ using namespace std;
  * @brief A class for teams which includes the team name and the number of wins for that team.
  * 
  */
-class Teams
+struct Teams
 {
-    public:
+    
     Teams()
     {
         teamName = " ";
@@ -39,7 +39,7 @@ class Teams
     void writeToFile(ofstream &file);
     vector<Teams> teams;
 
-    private:
+    
     string teamName;
     int numberOfWins;
 };

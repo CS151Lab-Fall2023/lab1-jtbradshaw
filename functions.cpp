@@ -23,11 +23,12 @@ void Teams::loadTeamsFromFileToVector(ifstream &file)
     bool inArray = false;
     //Reads the file into the vector
     while(file.peek()!=EOF) {
+        int sizeOf = teams.size();
         getline(file,name);
         hold.teamName = name;
         hold.numberOfWins = 1;
         int num = 0;
-        while(num<(int)size(teams)){
+        while(num<sizeOf){
             if(hold.teamName == teams[num].teamName){
                 inArray = true;
                 break;              
@@ -55,8 +56,9 @@ void Teams::loadTeamsFromFileToVector(ifstream &file)
 void Teams::sortVector()
 {
     Teams hold;
-    for(int i = 0; i < (int)size(teams); i++)
-        for(int number = 0; number < (int)size(teams); number++){
+    int sizeOf = teams.size();
+    for(int i = 0; i < sizeOf; i++)
+        for(int number = 0; number < sizeOf; number++){
             if (teams[i].numberOfWins>=teams[number+1].numberOfWins){
                 hold = teams[number+1];
                 teams[number+1] = teams[i];
@@ -71,9 +73,10 @@ void Teams::sortVector()
  * 
  */
 void Teams::printVector(){
+    int sizeOf = teams.size();
     cout<<setw(15)<<"Team Name            Number of wins"<<endl;
     cout<<"-------------------------------------"<<endl;
-    for(int i = 1; i < (int)size(teams); i++){
+    for(int i = 1; i < sizeOf; i++){
         cout<<left<<setw(22)<<teams.at(i).teamName<<"     "<<teams.at(i).numberOfWins<<endl;
         
     }
@@ -86,8 +89,9 @@ void Teams::printVector(){
  */
 void Teams::writeToFile(ofstream &file)
 {
+    int sizeOf = teams.size();
     file<<"Team name,Number of wins";
-    for(int i = 1; i < (int)size(teams); i++){
+    for(int i = 1; i < sizeOf; i++){
         file<<"\n"<<teams.at(i).teamName<<","<<teams.at(i).numberOfWins;
     }
 }
